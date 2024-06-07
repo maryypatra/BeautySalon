@@ -127,11 +127,12 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(328, 30);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label2.Location = new Point(331, 9);
             label2.Name = "label2";
-            label2.Size = new Size(238, 15);
+            label2.Size = new Size(193, 42);
             label2.TabIndex = 5;
-            label2.Text = "Информация о предоставляемых услугах";
+            label2.Text = "Информация о \r\nпредоставляемых услугах";
             // 
             // button3
             // 

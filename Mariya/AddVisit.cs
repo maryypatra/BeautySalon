@@ -40,14 +40,14 @@ namespace Mariya
         {
 
         }
-        private void LoadData()
+        private void AddVisit_Load(object sender, EventArgs e)
         {
             // Загрузка данных из базы данных в BindingSource
             masterBindingSource.DataSource = context.Masters.ToList();
             clientBindingSource.DataSource = context.Clients.ToList();
             serviceBindingSource.DataSource = context.Services.ToList();
         }
-        private void SetupBindings()
+        private void SetupBindings(object sender, EventArgs e)
         {
             // Настройка привязки данных для ComboBox
             comboBoxMaster.DataSource = masterBindingSource;
@@ -83,13 +83,12 @@ namespace Mariya
             context.Visits.Add(visit);
             context.SaveChanges();
 
+            visitBindingSource.DataSource = context.Visits.ToList();
+
 
         }
 
-        private void AddVisit_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {

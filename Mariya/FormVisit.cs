@@ -1,3 +1,4 @@
+using BeautySalonCRM;
 using Mariya.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -55,11 +56,37 @@ namespace Mariya
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var query = textBox1.Text;
-            var quer = Convert.ToInt32(query);
+            var filteredVisits = context.Visits
+            .Join(context.Masters,
+           visit => visit.MasterId,
+           master => master.Id,
+           (visit, master) => new { visit, master })
+            .Join(context.Clients,
+           vm => vm.visit.ClientId,
+           client => client.Id,
+           (vm, client) => new { vm.visit, vm.master, client })
+            .Join(context.Services,
+           vmc => vmc.visit.ServiceId,
+           service => service.Id,
+           (vmc, service) => new
+           {
+               vmc.visit.Id,
+               MasterSurname = vmc.master.Surname,
+               ClientSurname = vmc.client.Surname,
+               ServiceName = service.Name,
+               vmc.visit.Time,
+               vmc.visit.Status
+           })
+     .Where(v => (string.IsNullOrEmpty(textBoxMaster.Text) ||
+                  v.MasterSurname.ToLower().Contains(textBoxMaster.Text) ||
+                  v.ClientSurname.ToLower().Contains(textBoxMaster.Text) ||
+                  v.ServiceName.ToLower().Contains(textBoxMaster.Text)))
+     .ToList();
 
-            visitBindingSource.DataSource = context.Visits.Where(x => x.ClientId == quer).ToList();
+            visitBindingSource.DataSource = filteredVisits;
+            dataGridView1.DataSource = visitBindingSource;
         }
+
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
@@ -93,6 +120,12 @@ namespace Mariya
         private void button4_Click(object sender, EventArgs e)
         {
             context.SaveChanges();
+        }
+
+        private void ãðàôèêèToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormChart();
+            form.Show();
         }
     }
 }

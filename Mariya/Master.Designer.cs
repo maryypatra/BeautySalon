@@ -135,9 +135,10 @@ namespace Mariya
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(565, 23);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label2.Location = new Point(513, 22);
             label2.Name = "label2";
-            label2.Size = new Size(181, 15);
+            label2.Size = new Size(233, 21);
             label2.TabIndex = 3;
             label2.Text = "Информация о мастерах слона";
             // 

@@ -159,13 +159,14 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(660, 28);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label2.Location = new Point(617, 22);
             label2.Name = "label2";
-            label2.Size = new Size(144, 15);
+            label2.Size = new Size(187, 21);
             label2.TabIndex = 6;
             label2.Text = "Информация о клиентах";
             // 
-            // Clients
+            // FormClients
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -178,7 +179,7 @@
             Controls.Add(button1);
             Controls.Add(dataGridView1);
             Margin = new Padding(2);
-            Name = "Clients";
+            Name = "FormClients";
             Text = "Clients";
             Load += Clients_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
